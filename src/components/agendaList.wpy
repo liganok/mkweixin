@@ -1,5 +1,25 @@
+<template>
+  <view class="agendaList">
+    test
+    {{list}}
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class AgendaList extends wepy.component {
+    props = {
+      list:{
+        type: Object,
+        default: []
+      }
+    }
+  }
+</script>
+
 <style lang="less">
-  .panel {
+  .agendaList {
     width: 100%;
     margin-top: 20rpx;
     text-align: left;
@@ -26,18 +46,3 @@
     }
   }
 </style>
-<template>
-  <view class="panel">
-    <slot name="title">
-      Title
-    </slot>
-    <slot>
-    </slot>
-  </view>
-</template>
-<script>
-  import wepy from 'wepy'
-
-  export default class Panel extends wepy.component {
-  }
-</script>

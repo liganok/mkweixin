@@ -1,0 +1,60 @@
+<style lang="less">
+  
+</style>
+<template>
+  <div>
+    <AgendaList :list.sync="list"/>
+  </div>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  // import Toast from 'wepy-com-toast'
+  import api from '../api/api'
+  import { service } from '../config.js'
+  import AgendaList from '../components/agendaList'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '模板',
+      navigationBarTextStyle: 'white',
+      navigationBarBackgroundColor: '#049BFF'
+    }
+    components = {
+      AgendaList
+    }
+
+    data = {
+      list: [],
+      page: 1,
+      loading: false,
+      noMoreList: false
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+      this.initPageData()
+    }
+
+    initPageData() {
+      this.page = 0
+      this.getAgendaList(this.page)
+    }
+
+    async getAgendaList(page) {
+      if (this.loading || this.noMoreList) return
+      this.loading = true
+      let data = await api.Agenda.getTemplates(this.page)
+      console.log(data.data.data)
+      this.list = data.data.data
+    }
+  }
+</script>
