@@ -1,8 +1,9 @@
 <template>
-  <view class="agendaList">
-    test
-    {{list}}
+  <repeat for="{{list}}" key="index" index="index" item="item">
+    <view class="agendaList">
+    {{item.name}}
   </view>
+  </repeat>
 </template>
 
 <script>
